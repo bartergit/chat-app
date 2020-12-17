@@ -1,0 +1,111 @@
+body {
+    background-color: #d6e8ff;
+}
+
+div {
+    padding: 0px;
+    margin: 0px;
+}
+
+.container {
+    background-color: white;
+    /* padding: 10px; */
+    height: 95%;
+    margin: auto;
+    margin-top: 10px;
+    width: 700px;
+    display: flex;
+    flex-direction: row;
+    /* border: 3px solid black; */
+}
+
+.leftSide {
+    width: 30%;
+    border-right: 3px solid rgb(204, 204, 204);
+    overflow: auto;
+}
+
+.rightSide {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid black; */
+}
+
+.messages {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+}
+
+.addUser {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    background-color: white;
+    border: 3px solid black;
+    border-radius: 10px;
+}
+
+.inputBox input {
+    width: 80%;
+}
+
+.inputBox button {
+    width: 15%;
+}
+
+#send {
+    width: 10%;
+}
+
+.upperPanel {
+    padding: 10px;
+    width: 95%;
+    align-self: center;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 3px solid rgb(158, 158, 158);
+}
+
+.messages button {
+    font-size: 13px;
+    width: 80px;
+    height: 30px;
+}
+
+.chat {
+    padding: 10px;
+    /*font-size: larger;*/
+    border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+.chat:hover {
+    background-color: rgb(221, 221, 221);
+}
+
+.activeChat {
+    background-color: #deebfa;
+}
+
+.vertical {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.vertical button {
+    width: 30px;
+    height: 30px;
+}
+
+.view {
+    background-color: white;
+    position: fixed;
+    left: 50%;
+    border: 3px solid #deebfa;
+    padding-right: 10px;
+    top: 60px;
+}
