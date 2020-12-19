@@ -1,7 +1,6 @@
 img {
   width: 40px;
   height: auto;
-  /* max-width: 100%; */
 }
 
 .img_div {
@@ -15,8 +14,6 @@ img {
 
 .incoming_msg {
   align-self: flex-start;
-  /* min-height: 50px; */
-  /* border: 1px solid black; */
   display: flex;
   flex-direction: row;
   margin-bottom: 10px;
@@ -58,7 +55,6 @@ span {
 
 .right .time {
   align-self: flex-end;
-  /* float: right; */
 }
 
 .right {

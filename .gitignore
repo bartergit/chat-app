@@ -39,6 +39,10 @@ build/Release
 
 # Dependency directories
 node_modules/
+.vscode/
+__pycache__/
+.idea/
+build/
 jspm_packages/
 
 # TypeScript v1 declaration files

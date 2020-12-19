@@ -1,9 +1,10 @@
 <script lang="ts">
     export let users: User[];
-    export let hide;
     export let receiveChats;
     export let myId;
     export let chats;
+    export let changeVisibility;
+    export let isChatCreationMenuVisible;
     let message = "";
 
     function createChat(e) {
@@ -32,12 +33,17 @@
             }).then((response) => {
                 if (response.ok) {
                     receiveChats();
-                    hide();
+                    changeVisibility();
                 } else {
                     message = "failed to add chat";
                 }
             });
         }
+        document.addEventListener("keydown", (event) => {
+            if (event.code == "Enter" && isChatCreationMenuVisible) {
+                document.getElementById("createChatButton").click();
+            }
+        });
     }
 </script>
 
@@ -63,20 +69,20 @@
     }
 </style>
 
-<div class="window">
-    <form on:submit|preventDefault={createChat}>
-        <p>
-            <input type="submit" value="Create chat"/>
-            <button
-                    on:click={hide}>X
-            </button>
-        </p>
-        <input type="text" name="chat_name" placeholder="Chat name" required/>
-        <p style="color:red">{message}</p>
-        {#each users as user}
-            {#if user.id !== myId }
-                <p><input type="checkbox" name={user.id} value={true}/>{user.name}</p>
-            {/if}
-        {/each}
-    </form>
-</div>
+    <div class="window">
+        <form on:submit|preventDefault={createChat}>
+            <p>
+                <input id="createChatButton" type="submit" value="Create chat"/>
+                <button
+                        on:click={(e)=>{e.preventDefault(); changeVisibility()}}>X
+                </button>
+            </p>
+            <input spellcheck="false" type="text" name="chat_name" placeholder="Chat name" required/>
+            <p style="color:red">{message}</p>
+            {#each users as user}
+                {#if user.id !== myId }
+                    <p><input type="checkbox" name={user.id} value={true}/>{user.name}</p>
+                {/if}
+            {/each}
+        </form>
+    </div>

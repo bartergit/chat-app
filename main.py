@@ -1,6 +1,6 @@
 from flask import Flask, jsonify, send_from_directory, request, redirect, render_template, session
 import json
-from flask_socketio import SocketIO
+from flask_socketio import SocketIO, emit, send
 from db import User, DB_connection
 # --> starting app
 
@@ -9,8 +9,12 @@ app = Flask(__name__, static_url_path='',
             template_folder='client/templates')
 app.secret_key = "something_very_secret"
 db = DB_connection("postgres", "postgres", "admin", "127.0.0.1", "5432")
+socket_io = SocketIO(app)#, cors_allowed_origins="http://localhost:4200")
 
-
+@socket_io.on('my event')
+def handle_message(data):
+    print('received message: ' + data["data"])
+    emit('hello', {"data": "a"})
 # -->
 @app.route('/addChat', methods=['POST'])
 def addChat():
@@ -20,7 +24,7 @@ def addChat():
     # return str(session["current_user_id"])
 
 
-@app.route('/me')
+@socket_io.on('me')
 def me():
     return str(session["current_user_id"])
 

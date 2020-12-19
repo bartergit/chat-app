@@ -4,10 +4,6 @@
   export let name: string;
 </script>
 
-<svelte:head>
-  <link rel="stylesheet" type="text/css" href="message.css" />
-</svelte:head>
-
 <div class:right={self} class="incoming_msg">
   <div class="img_div"><img src="user-profile.png" alt="icon" /></div>
   <div class="content_div">

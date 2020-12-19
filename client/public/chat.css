@@ -3,20 +3,18 @@ body {
 }
 
 div {
-    padding: 0px;
-    margin: 0px;
+    padding: 0;
+    margin: 0;
 }
 
 .container {
     background-color: white;
-    /* padding: 10px; */
-    height: 95%;
+    height: 100%;
     margin: auto;
     margin-top: 10px;
     width: 700px;
     display: flex;
     flex-direction: row;
-    /* border: 3px solid black; */
 }
 
 .leftSide {
@@ -29,13 +27,14 @@ div {
     width: 100%;
     display: flex;
     flex-direction: column;
-    /* border: 1px solid black; */
 }
 
 .messages {
     height: 100%;
     display: flex;
     flex-direction: column;
+}
+#messages-content {
     overflow: auto;
 }
 
@@ -47,13 +46,18 @@ div {
     border: 3px solid black;
     border-radius: 10px;
 }
-
+.inputBox{
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-self: center;
+}
 .inputBox input {
     width: 80%;
 }
 
 .inputBox button {
-    width: 15%;
+    width: 20%;
 }
 
 #send {
@@ -61,13 +65,40 @@ div {
 }
 
 .upperPanel {
-    padding: 10px;
+    padding: 5px;
     width: 95%;
     align-self: center;
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: flex-end;
     border-bottom: 3px solid rgb(158, 158, 158);
+    height: 50px;
+}
+
+.upperPanel div {
+    width: 33%;
+    display: flex;
+}
+
+.upperPanel button {
+    padding: 0 10px 0 10px;
+    margin: 0;
+}
+
+.withForm {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.upperPanel input {
+    padding: 0 10px 0 10px;
+    margin: 0;
+    height: 30px;
+    margin-top: 5px;
+}
+
+.upperPanel b {
+    font-size: 24px;
 }
 
 .messages button {
@@ -86,10 +117,6 @@ div {
     background-color: rgb(221, 221, 221);
 }
 
-.activeChat {
-    background-color: #deebfa;
-}
-
 .vertical {
     display: flex;
     justify-content: space-around;
@@ -99,13 +126,14 @@ div {
 .vertical button {
     width: 30px;
     height: 30px;
+    padding: 0 10px 0 10px;
+    margin: 0px;
 }
 
 .view {
     background-color: white;
     position: fixed;
     left: 50%;
-    border: 3px solid #deebfa;
-    padding-right: 10px;
-    top: 60px;
+    top: 30%;
+    padding-right: 20px;
 }
