@@ -40,6 +40,7 @@ bower_components
 node_modules/
 .vscode/
 __pycache__/
+build/
 .idea/
 jspm_packages/
 
