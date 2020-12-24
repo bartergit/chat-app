@@ -1,4 +1,6 @@
 {
+    "name": "svelte-app",
+    "version": "1.0.0",
     "scripts": {
         "heroku-prebuild": "cd app/client && npm install && npm run build"
     }
