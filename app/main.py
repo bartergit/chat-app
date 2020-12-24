@@ -3,7 +3,7 @@ import json
 from flask_socketio import SocketIO, emit, send
 # from db import User, DB_connection
 import os #
-from db import User, DB_connection #
+from .db import User, DB_connection #
 # --> starting app
 
 app = Flask(__name__, static_url_path='',
