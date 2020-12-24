@@ -3,7 +3,7 @@
     <link rel="stylesheet" type="text/css" href="message.css"/>
 </svelte:head>
 <script lang="ts">
-    import {onMount} from 'svelte';
+    // import {onMount} from 'svelte';
     import ChatCreation from "./ChatCreation.svelte";
     import Message from "./Message.svelte";
     import {io} from "socket.io-client";
@@ -30,82 +30,18 @@
         currentChat = chat;
     }
 
-    async function sendMessage() {
-        if (currentMessage.trim() != "") {
-            fetch("./sendMessage", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    content: currentMessage,
-                    from_user_id: myId,
-                    chat_id: currentChat.id,
-                }),
-            }).then((response) => {
-                if (response.ok) {
-                    receiveMessages();
-                    currentMessage = "";
-                } else {
-                    console.error("error", response);
-                }
-            });
-        }
-    }
-
-    function receiveUsers() {
-        fetch("./receiveUsers").then((response) => {
-            if (response.ok) {
-                response.json().then((data) => {
-                    users = data;
-                    receiveChats();
-                });
-            } else {
-                console.error("error", response);
-            }
-        });
-    }
-
-    function receiveChats() {
-        fetch("./receiveChats").then((response) => {
-            if (response.ok) {
-                response.json().then((data) => {
-                    chats = data;
-                    if (!ready) {
-                        currentChat = data[0];
-                        receiveMessages();
-                    }
-                });
-            } else {
-                console.error("error", response);
-            }
-        });
-    }
-
-    function receiveMessages() {
-        fetch("./receiveMessages").then((response) => {
-            if (response.ok) {
-                response.json().then((data) => {
-                    messages = data;
-                    ready = true;
-                });
-            } else {
-                console.error("error", response);
-            }
-        });
-    }
-
     function scrollToBottom(dontCheckCondition = false) {
-        let messageContent = document.getElementById("messages-content");
-        if (dontCheckCondition || messageContent.scrollHeight - messageContent.scrollTop - messageContent.getBoundingClientRect().height < 200) {
-            messageContent.scrollTo({top: messageContent.scrollHeight, behavior: 'smooth'});
+        if (dontCheckCondition || ready) {
+            let messageContent = document.getElementById("messages-content");
+            if (dontCheckCondition || messageContent.scrollHeight - messageContent.scrollTop - messageContent.getBoundingClientRect().height < 500) {
+                messageContent.scrollTo({top: messageContent.scrollHeight, behavior: 'smooth'});
+            }
         }
     }
 
     document.addEventListener("keydown", (event) => {
-        if (event.code == "Enter" && !isChatCreationMenuVisible) {
+        if (event.code == "Enter" && !isChatCreationMenuVisible && currentMessage.trim() != "") {
             sendMessage();
-            scrollToBottom(true);
         }
     });
 
@@ -124,7 +60,7 @@
                 lastMessage.content.length < 20 ? "" : "..."
             }`;
         } else {
-            return "<b>Noone:</b>Nothing";
+            return "<b>No one:</b>Nothing";
         }
     };
 
@@ -133,6 +69,7 @@
     }
 
     //------>
+
     let users: User[];
     let chats: Chat[];
     let messages: MessageData[][];
@@ -142,43 +79,45 @@
     let isChatCreationMenuVisible = false;
     let ready = false;
     let viewMembers = false;
-    // fetch("./me").then((response) => {
-    //     if (response.ok) {
-    //         response.json().then((data) => {
-    //             myId = parseInt(data);
-    //             receiveUsers();
-    //         });
-    //     } else {
-    //         console.error("error", response);
-    //     }
-    // });
-    const socket = io("ws://localhost:8000");
-    socket.on('connect', ()=>{
+    const socket = io();
+    socket.on('connect', () => {
         console.log("connected");
-        socket.emit("me", (myId)=>{
-            console.log(myId)
+        socket.emit("me", (data) => {
+            myId = data;
+            socket.emit("receiveUsers", ()=> {
+                socket.emit("receiveChats", ()=> {
+                    socket.emit("receiveMessages", ()=>{
+                        ready = true;
+                    })
+                })
+            })
         })
     });
-    socket.on('hello', (data)=>{
-        console.log(data);
+    socket.on("get users", (data) => {
+        console.log("users", data);
+        users = data;
+    });
+    socket.on("get messages", (data)=>{
+        console.log("messages", data);
+        messages = data;
+        setTimeout(scrollToBottom, 100);
     })
-    // io.on('connection', (socket) => {
-    //     socket.emit('connection');
-    //     console.log('a user connected');
-    //     socket.on('disconnect', () => {
-    //         console.log('user disconnected');
-    //     });
-    // });
-    // setInterval(receiveMessages, 1000);
-    // function load() {
-    //     onMount(async () => {
+    socket.on("get chats", (data)=>{
+        chats = data;
+        console.log("chats", data);
+        currentChat = chats[0];
+    })
 
-    // const res = await fetch(`https://jsonplaceholder.typicode.com/photos?_limit=20`);
-    // photos = await res.json();
-    // });
-    // }
+    function sendMessage() {
+        socket.emit("sendMessage", {
+            content: currentMessage,
+            from_user_id: myId,
+            chat_id: currentChat.id,
+        });
+        setTimeout(()=>scrollToBottom(true), 100);
+        currentMessage = "";
+    }
 </script>
-
 {#if viewMembers}
     <div class="view">
         <ul>
@@ -191,7 +130,7 @@
 {/if}
 {#if ready}
     {#if isChatCreationMenuVisible}
-        <ChatCreation {isChatCreationMenuVisible} {changeVisibility} {users} {receiveChats} {chats} {myId}/>
+        <ChatCreation {isChatCreationMenuVisible} {changeVisibility} {users} {socket} {chats} {myId}/>
     {/if}
     <div class="container">
         <div class="leftSide">

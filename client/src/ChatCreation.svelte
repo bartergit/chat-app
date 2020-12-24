@@ -1,9 +1,8 @@
 <script lang="ts">
     export let users: User[];
-    export let receiveChats;
     export let myId;
-    export let chats;
     export let changeVisibility;
+    export let socket;
     export let isChatCreationMenuVisible;
     let message = "";
 
@@ -21,23 +20,8 @@
             message = "select at least 1 user";
         } else {
             usersToAdd.push(myId);
-            fetch("./addChat", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json",
-                },
-                body: JSON.stringify({
-                    usersToAdd: usersToAdd,
-                    chatName: chatName
-                }),
-            }).then((response) => {
-                if (response.ok) {
-                    receiveChats();
-                    changeVisibility();
-                } else {
-                    message = "failed to add chat";
-                }
-            });
+            socket.emit("addChat", {usersToAdd: usersToAdd, chatName: chatName});
+            changeVisibility();
         }
         document.addEventListener("keydown", (event) => {
             if (event.code == "Enter" && isChatCreationMenuVisible) {

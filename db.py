@@ -121,5 +121,7 @@ if __name__ == '__main__':
     db = DB_connection(
         "postgres", "postgres", "admin", "127.0.0.1", "5432"
     )
-    print(db.get_user_by_password("chero", "chero"))
+    print(db.get_chats_by_user_id_as_dict(1))
+    print()
+    print(db.get_chats_by_user_id_as_dict(1))
     db.cursor.close()
