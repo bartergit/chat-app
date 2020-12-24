@@ -44,9 +44,10 @@ class DB_connection:
     SALT = "barterSalt".encode('utf-8')
     ITERATION_NUMBER = 100000
 
-    def __init__(self, db_name): #, db_user, db_password, db_host, db_port):
+    def __init__(self, host): #, db_name, db_user, db_password, db_host, db_port):
         self.connection = psycopg2.connect(
-            database=db_name,
+            host=host
+            #database=db_name,
             # sslmode='require' #
             # user=db_user,
             # password=db_password,
