@@ -79,7 +79,7 @@
     let isChatCreationMenuVisible = false;
     let ready = false;
     let viewMembers = false;
-    const socket = io();
+    const socket = io.connect('http://' + document.domain + ':' + location.port);
     socket.on('connect', () => {
         console.log("connected");
         socket.emit("me", (data) => {
