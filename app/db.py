@@ -45,15 +45,12 @@ class DB_connection:
     ITERATION_NUMBER = 100000
 
     def __init__(self, host): #, db_name, db_user, db_password, db_host, db_port):
-        self.connection = psycopg2.connect(
-            host=host
-            #database=db_name,
-            # sslmode='require' #
+        self.connection = psycopg2.connect(host, sslmode='require')
+            # database=db_name,
             # user=db_user,
             # password=db_password,
             # host=db_host,
             # port=db_port,
-        )
         self.connection.autocommit = True
         self.cursor = self.connection.cursor()
 
