@@ -3,5 +3,8 @@
     "version": "1.0.0",
     "scripts": {
         "heroku-prebuild": "cd app/client && npm install && npm run build"
-    }
+    },
+    "engines": {
+    "node": "12.x"
+  }
 }
