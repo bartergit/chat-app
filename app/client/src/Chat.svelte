@@ -3,7 +3,6 @@
     <link rel="stylesheet" type="text/css" href="message.css"/>
 </svelte:head>
 <script lang="ts">
-    // import {onMount} from 'svelte';
     import ChatCreation from "./ChatCreation.svelte";
     import Message from "./Message.svelte";
     import {io} from "socket.io-client";
@@ -79,14 +78,15 @@
     let isChatCreationMenuVisible = false;
     let ready = false;
     let viewMembers = false;
-    const socket = io.connect('http://' + document.domain + ':' + location.port);
+    const socket = io('http://' + document.domain + ':' + location.port);
+
     socket.on('connect', () => {
         console.log("connected");
         socket.emit("me", (data) => {
             myId = data;
-            socket.emit("receiveUsers", ()=> {
-                socket.emit("receiveChats", ()=> {
-                    socket.emit("receiveMessages", ()=>{
+            socket.emit("receiveUsers", () => {
+                socket.emit("receiveChats", () => {
+                    socket.emit("receiveMessages", () => {
                         ready = true;
                     })
                 })
@@ -97,12 +97,12 @@
         console.log("users", data);
         users = data;
     });
-    socket.on("get messages", (data)=>{
+    socket.on("get messages", (data) => {
         console.log("messages", data);
         messages = data;
         setTimeout(scrollToBottom, 100);
     })
-    socket.on("get chats", (data)=>{
+    socket.on("get chats", (data) => {
         chats = data;
         console.log("chats", data);
         currentChat = chats[0];
@@ -114,7 +114,7 @@
             from_user_id: myId,
             chat_id: currentChat.id,
         });
-        setTimeout(()=>scrollToBottom(true), 100);
+        setTimeout(() => scrollToBottom(true), 100);
         currentMessage = "";
     }
 </script>

@@ -25,7 +25,6 @@
     "typescript": "^3.9.3"
   },
   "dependencies": {
-    "sirv-cli": "^1.0.0",
-    "socket.io": "^3.0.4"
+    "sirv-cli": "^1.0.0"
   }
 }
