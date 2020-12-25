@@ -3,7 +3,6 @@
     export let myId;
     export let changeVisibility;
     export let socket;
-    export let isChatCreationMenuVisible;
     let message = "";
 
     function createChat(e) {
@@ -25,8 +24,9 @@
             changeVisibility();
         }
         document.addEventListener("keydown", (event) => {
-            if (event.code == "Enter" && isChatCreationMenuVisible) {
-                document.getElementById("createChatButton").click();
+            let button = document.getElementById("createChatButton");
+            if (event.code == "Enter" && button) {
+                button.click();
             }
         });
     }

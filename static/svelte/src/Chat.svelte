@@ -136,7 +136,7 @@
 {/if}
 {#if ready}
     {#if isChatCreationMenuVisible}
-        <ChatCreation {isChatCreationMenuVisible} {changeVisibility} {users} {socket} {myId}/>
+        <ChatCreation {changeVisibility} {users} {socket} {myId}/>
     {/if}
     <div class="container">
         <div class="leftSide">
