@@ -3,8 +3,11 @@
   <component name="ChangeListManager">
     <list default="true" id="1eb4499f-754d-4525-bf28-595e8cbcedd9" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/svelte/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/svelte/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/svelte/rollup.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/svelte/rollup.config.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/application.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/templates/chat.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/click.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,9 +57,9 @@
       <recent name="C:\git\chat-app\static\styles" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\git\chat-app" />
       <recent name="C:\git\chat-app\templates" />
       <recent name="C:\git\chat-app\static\svelte" />
-      <recent name="C:\git\chat-app" />
     </key>
   </component>
   <component name="RunManager" selected="Python.application">
@@ -90,6 +93,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
         <env name="SECRET" value="BARTER_SECRET" />
+        <env name="DATABASE_URL" value="jdbc:postgresql://ec2-34-194-198-238.compute-1.amazonaws.com:5432/d90u4mqjtiv15f" />
       </envs>
       <option name="SDK_HOME" value="C:\git\chat-app\Scripts\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -129,6 +133,10 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
+    <list>
+      <item itemvalue="Python.application" />
+      <item itemvalue="Python.chat-app" />
+    </list>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -144,7 +152,7 @@
       <workItem from="1608902269300" duration="734000" />
       <workItem from="1608903127358" duration="2030000" />
       <workItem from="1608905334425" duration="51000" />
-      <workItem from="1608905388284" duration="1135000" />
+      <workItem from="1608905388284" duration="2159000" />
     </task>
     <servers />
   </component>
