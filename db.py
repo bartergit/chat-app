@@ -42,7 +42,7 @@ class Chat:
 
 
 class DB_connection:
-    SALT = "barterSalt".encode('utf-8')
+    SALT = os.environ.get("SALT").encode('utf-8')
     ITERATION_NUMBER = 100000
 
     def __init__(self, db_host=None, db_name=None, db_user=None, db_password=None, db_port=None):
