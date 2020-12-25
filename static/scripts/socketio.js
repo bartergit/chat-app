@@ -8,5 +8,4 @@ document.addEventListener('DOMContentLoaded', () => {
     document.getElementById('button').onclick = () =>{
         socket.emit('try', "somethign to path");
     }
-    
 });

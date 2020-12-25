@@ -1,6 +1,6 @@
 <svelte:head>
-    <link rel="stylesheet" type="text/css" href="chat.css"/>
-    <link rel="stylesheet" type="text/css" href="message.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/chat.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/message.css"/>
 </svelte:head>
 <script lang="ts">
     import ChatCreation from "./ChatCreation.svelte";
