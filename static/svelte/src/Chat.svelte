@@ -69,7 +69,7 @@
     let currentChat: Chat;
     let currentMessage = "";
     let isChatCreationMenuVisible = false;
-    let ready = false;
+    $: ready = chats != undefined && currentChat != undefined && messages != undefined && users != undefined;
     let viewMembers = false;
     let socket;
     let sendMessage;
@@ -85,7 +85,7 @@
                 socket.emit("receiveUsers", () => {
                     socket.emit("receiveChats", () => {
                         socket.emit("receiveMessages", () => {
-                            ready = true;
+                            // ready = true;
                         })
                     })
                 })
@@ -123,7 +123,6 @@
         });
     }
     document.onreadystatechange = onSocketLoad;
-    // setTimeout(onSocketLoad, 1000);
 </script>
 {#if viewMembers}
     <div class="view">
