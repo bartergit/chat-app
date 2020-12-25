@@ -1,6 +1,7 @@
 import psycopg2
 import time
 import hashlib
+import os
 
 
 def hash(key):
@@ -44,13 +45,17 @@ class DB_connection:
     SALT = "barterSalt".encode('utf-8')
     ITERATION_NUMBER = 100000
 
-    def __init__(self, host): #, db_name, db_user, db_password, db_host, db_port):
-        self.connection = psycopg2.connect(host, sslmode='require')
-            # database=db_name,
-            # user=db_user,
-            # password=db_password,
-            # host=db_host,
-            # port=db_port,
+    def __init__(self, db_host=None, db_name=None, db_user=None, db_password=None, db_port=None):
+        if os.environ.get("prod"):
+            self.connection = psycopg2.connect(db_host, sslmode='require')
+        else:
+            self.connection = psycopg2.connect(
+                database=db_name,
+                user=db_user,
+                password=db_password,
+                host=db_host,
+                port=db_port
+            )
         self.connection.autocommit = True
         self.cursor = self.connection.cursor()
 

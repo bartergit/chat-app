@@ -5,7 +5,7 @@
 </script>
 
 <div class:right={self} class="incoming_msg">
-  <div class="img_div"><img src="user-profile.png" alt="icon" /></div>
+  <div class="img_div"><img src="images/user-profile.png" alt="icon" /></div>
   <div class="content_div">
     <span> {name}</span>
     <div class="message_itself">

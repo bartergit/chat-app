@@ -1,11 +1,14 @@
 <svelte:head>
     <link rel="stylesheet" type="text/css" href="styles/chat.css"/>
     <link rel="stylesheet" type="text/css" href="styles/message.css"/>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/socket.io/1.3.6/socket.io.min.js"></script>
 </svelte:head>
 <script lang="ts">
     import ChatCreation from "./ChatCreation.svelte";
     import Message from "./Message.svelte";
-    import {io} from "socket.io-client";
+    import set = Reflect.set;
+
+    // import {io} from "socket.io-client";
 
     interface User {
         readonly id: number;
@@ -37,13 +40,6 @@
             }
         }
     }
-
-    document.addEventListener("keydown", (event) => {
-        if (event.code == "Enter" && !isChatCreationMenuVisible && currentMessage.trim() != "") {
-            sendMessage();
-        }
-    });
-
 
     function findUserById(id: number): User {
         for (let index = 0; index < users.length; index++) {
@@ -78,46 +74,58 @@
     let isChatCreationMenuVisible = false;
     let ready = false;
     let viewMembers = false;
-    const socket = io();
-    console.log(socket);
-    socket.emit("me", data => console.log(data));
-    socket.on('connect', () => {
-        console.log("connected");
-        socket.emit("me", (data) => {
-            myId = data;
-            socket.emit("receiveUsers", () => {
-                socket.emit("receiveChats", () => {
-                    socket.emit("receiveMessages", () => {
-                        ready = true;
+    let sendMessage: () => {};
+    const onSocketLoad = () => {
+        const socket = io();
+        console.log(socket);
+        console.log("hello");
+        socket.emit("me", data => console.log(data));
+        socket.on('connect', () => {
+            console.log("connected");
+            socket.emit("me", (data) => {
+                myId = data;
+                socket.emit("receiveUsers", () => {
+                    socket.emit("receiveChats", () => {
+                        socket.emit("receiveMessages", () => {
+                            ready = true;
+                        })
                     })
                 })
             })
-        })
-    });
-    socket.on("get users", (data) => {
-        console.log("users", data);
-        users = data;
-    });
-    socket.on("get messages", (data) => {
-        console.log("messages", data);
-        messages = data;
-        setTimeout(scrollToBottom, 100);
-    })
-    socket.on("get chats", (data) => {
-        chats = data;
-        console.log("chats", data);
-        currentChat = chats[0];
-    })
-
-    function sendMessage() {
-        socket.emit("sendMessage", {
-            content: currentMessage,
-            from_user_id: myId,
-            chat_id: currentChat.id,
         });
-        setTimeout(() => scrollToBottom(true), 100);
-        currentMessage = "";
+        socket.on("get users", (data) => {
+            console.log("users", data);
+            users = data;
+        });
+        socket.on("get messages", (data) => {
+            console.log("messages", data);
+            messages = data;
+            setTimeout(scrollToBottom, 100);
+        })
+        socket.on("get chats", (data) => {
+            chats = data;
+            console.log("chats", data);
+            currentChat = chats[0];
+        })
+
+        function sendMessage() {
+            socket.emit("sendMessage", {
+                content: currentMessage,
+                from_user_id: myId,
+                chat_id: currentChat.id,
+            });
+            setTimeout(() => scrollToBottom(true), 100);
+            currentMessage = "";
+        }
+
+        document.addEventListener("keydown", (event) => {
+            if (event.code == "Enter" && !isChatCreationMenuVisible && currentMessage.trim() != "") {
+                sendMessage();
+            }
+        });
     }
+    document.onreadystatechange = onSocketLoad;
+    // setTimeout(onSocketLoad, 1000);
 </script>
 {#if viewMembers}
     <div class="view">

@@ -1,17 +1,20 @@
 import os
-import time
-from flask import Flask, render_template, request, redirect, url_for, flash, session
-from flask_socketio import SocketIO, join_room, leave_room, send
-from db import User, DB_connection #
-
+from flask import Flask, render_template, request, redirect, session
+from flask_socketio import SocketIO
+from db import User, DB_connection  #
 
 # Configure app
 app = Flask(__name__, static_url_path='',
             static_folder='static',
             template_folder='templates')
-app.secret_key=os.environ.get('SECRET')
-DATABASE_URL = os.environ['DATABASE_URL']
-db = DB_connection(DATABASE_URL)
+app.secret_key = os.environ.get('SECRET', "SECRET")
+if os.environ.get("prod"):
+    DATABASE_URL = os.environ.get('DATABASE_URL')
+    db = DB_connection(DATABASE_URL)
+else:
+    db = DB_connection(
+        "127.0.0.1", "postgres", "postgres", "admin", "5432"
+    )
 socketio = SocketIO(app, manage_session=False)
 
 
@@ -78,6 +81,7 @@ def base():
         return render_template('index.html')
     else:
         return redirect("/login")
+
 
 @socketio.on("receiveMessages")
 def receiveMessages():
