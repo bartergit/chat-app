@@ -21,6 +21,7 @@
         } else {
             usersToAdd.push(myId);
             socket.emit("addChat", {usersToAdd: usersToAdd, chatName: chatName});
+            socket.emit("receiveMessages");
             changeVisibility();
         }
         document.addEventListener("keydown", (event) => {

@@ -6,9 +6,6 @@
 <script lang="ts">
     import ChatCreation from "./ChatCreation.svelte";
     import Message from "./Message.svelte";
-    import set = Reflect.set;
-
-    // import {io} from "socket.io-client";
 
     interface User {
         readonly id: number;
@@ -75,7 +72,7 @@
     let ready = false;
     let viewMembers = false;
     let socket;
-    let sendMessage: () => {};
+    let sendMessage;
     const onSocketLoad = () => {
         socket = io();
         console.log(socket);
@@ -109,7 +106,7 @@
             currentChat = chats[0];
         })
 
-        function sendMessage() {
+        sendMessage = ()=>{
             socket.emit("sendMessage", {
                 content: currentMessage,
                 from_user_id: myId,
@@ -140,7 +137,7 @@
 {/if}
 {#if ready}
     {#if isChatCreationMenuVisible}
-        <ChatCreation {isChatCreationMenuVisible} {changeVisibility} {users} {socket} {chats} {myId}/>
+        <ChatCreation {isChatCreationMenuVisible} {changeVisibility} {users} {socket} {myId}/>
     {/if}
     <div class="container">
         <div class="leftSide">
@@ -192,7 +189,7 @@
                 </div>
                 <div class="inputBox">
                     <input bind:value={currentMessage} type="text"/>
-                    <button on:click={sendMessage}>Send</button>
+                    <button on:click ={sendMessage}>Send</button>
                 </div>
             </div>
         </div>
