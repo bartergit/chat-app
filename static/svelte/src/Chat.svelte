@@ -27,13 +27,14 @@
 
     function changeCurrentChat(chat) {
         currentChat = chat;
+        setTimeout(() => scrollToBottom(true, false), 100);
     }
 
-    function scrollToBottom(dontCheckCondition = false) {
-        if (dontCheckCondition || ready) {
+    function scrollToBottom(dontCheckCondition = false,isSmooth = true) {
+        if (ready) {
             let messageContent = document.getElementById("messages-content");
             if (dontCheckCondition || messageContent.scrollHeight - messageContent.scrollTop - messageContent.getBoundingClientRect().height < 500) {
-                messageContent.scrollTo({top: messageContent.scrollHeight, behavior: 'smooth'});
+                messageContent.scrollTo({top: messageContent.scrollHeight, behavior: isSmooth ?'smooth' : 'auto'});
             }
         }
     }
@@ -78,17 +79,39 @@
         console.log(socket);
         console.log("hello");
         socket.emit("me", data => console.log(data));
+        function receiveMessages(){
+            socket.emit("receiveMessages", (res)=> {
+                if (res == "bad") {
+                    receiveMessages();
+                } else {
+                    return true;
+                }
+            });
+        }
+        function receiveUsers(){
+            socket.emit("receiveUsers", (res)=> {
+                if (res == "bad") {
+                    receiveUsers();
+                } else {
+                    return true;
+                }
+            });
+        }
+        function receiveChats(){
+            socket.emit("receiveChats", (res)=> {
+                if (res == "bad") {
+                    receiveChats();
+                } else {
+                    return true;
+                }
+            });
+        }
         socket.on('connect', () => {
             console.log("connected");
             socket.emit("me", (data) => {
                 myId = data;
-                socket.emit("receiveUsers", () => {
-                    socket.emit("receiveChats", () => {
-                        socket.emit("receiveMessages", () => {
-                            // ready = true;
-                        })
-                    })
-                })
+                receiveUsers();
+                receiveChats();
             })
         });
         socket.on("get users", (data) => {
@@ -103,10 +126,23 @@
         socket.on("get chats", (data) => {
             chats = data;
             console.log("chats", data);
-            currentChat = chats[0];
+            receiveMessages();
+            if (currentChat === undefined) {
+                console.log("currentchat", currentChat);
+                currentChat = chats[0];
+            }
+        })
+        socket.on("refresh messages", () => {
+            receiveMessages();
+            console.log("refreshed messages");
         })
 
-        sendMessage = ()=>{
+        socket.on("refresh chats", () => {
+            receiveChats();
+            console.log("refreshed chats");
+        })
+
+        sendMessage = () => {
             socket.emit("sendMessage", {
                 content: currentMessage,
                 from_user_id: myId,
@@ -174,7 +210,8 @@
                         </button>
                     </div>
                     <div class="withForm">
-                        <form action="./logout"><span>@{findUserById(myId).login} {findUserById(myId).name}</span><input
+                        <form action="./logout"><span
+                                title="@{findUserById(myId).login} {findUserById(myId).name}">@{findUserById(myId).login} {findUserById(myId).name}</span><input
                                 type="submit" value="Log out"/></form>
                     </div>
                 </div>
@@ -188,7 +225,7 @@
                 </div>
                 <div class="inputBox">
                     <input bind:value={currentMessage} type="text"/>
-                    <button on:click ={sendMessage}>Send</button>
+                    <button on:click={sendMessage}>Send</button>
                 </div>
             </div>
         </div>

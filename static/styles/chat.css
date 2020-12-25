@@ -90,6 +90,10 @@ div {
     justify-content: flex-end;
 }
 
+.withForm span{
+    overflow: hidden;
+}
+
 .upperPanel input {
     padding: 0 10px 0 10px;
     margin: 0;
@@ -140,4 +144,8 @@ div {
 
 .activeChat{
     background-color: #e0edff;
+}
+
+form {
+    width: 100px;
 }

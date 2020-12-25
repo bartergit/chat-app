@@ -40,7 +40,6 @@ class Chat:
         self.chat_name = chat_name
         self.id = id
 
-
 class DB_connection:
     SALT = os.environ.get("SALT").encode('utf-8')
     ITERATION_NUMBER = 100000
@@ -119,14 +118,13 @@ class DB_connection:
         chat_id = self.get_data("SELECT currval('chat_id_seq')")[0][0]
         for user_id in ids_members:
             self.execute_query(f"insert into chat_users(chat_id_member, user_id_member) values ({chat_id}, {user_id})")
+        return chat_id
 
 
 if __name__ == '__main__':
-    pass
-    # db = DB_connection(
-    #     "postgres", "postgres", "admin", "127.0.0.1", "5432"
-    # )
-    # print(db.get_chats_by_user_id_as_dict(1))
-    # print()
-    # print(db.get_chats_by_user_id_as_dict(1))
-    # db.cursor.close()
+    db = DB_connection(
+        "127.0.0.1", "postgres", "postgres", "admin", "5432"
+    )
+    print(db.get_chats_by_user_id_as_dict(1))
+    for i in range(100):
+        print(db.get_messages_by_chat_id_as_dict(i))
