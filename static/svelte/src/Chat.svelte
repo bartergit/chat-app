@@ -74,9 +74,10 @@
     let isChatCreationMenuVisible = false;
     let ready = false;
     let viewMembers = false;
+    let socket;
     let sendMessage: () => {};
     const onSocketLoad = () => {
-        const socket = io();
+        socket = io();
         console.log(socket);
         console.log("hello");
         socket.emit("me", data => console.log(data));

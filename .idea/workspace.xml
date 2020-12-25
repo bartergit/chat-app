@@ -2,13 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1eb4499f-754d-4525-bf28-595e8cbcedd9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/application.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/svelte/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/svelte/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/svelte/src/Chat.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/static/svelte/src/Chat.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/svelte/src/Message.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/static/svelte/src/Message.svelte" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/click.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/click.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -153,7 +147,7 @@
       <workItem from="1608902269300" duration="734000" />
       <workItem from="1608903127358" duration="2030000" />
       <workItem from="1608905334425" duration="51000" />
-      <workItem from="1608905388284" duration="4951000" />
+      <workItem from="1608905388284" duration="5130000" />
     </task>
     <servers />
   </component>
