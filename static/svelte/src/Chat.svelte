@@ -79,7 +79,8 @@
     let ready = false;
     let viewMembers = false;
     const socket = io();
-    console.log('https://' + document.domain);
+    console.log(socket);
+    socket.emit("me", data => console.log(data));
     socket.on('connect', () => {
         console.log("connected");
         socket.emit("me", (data) => {
