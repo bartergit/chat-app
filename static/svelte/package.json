@@ -2,10 +2,10 @@
   "name": "svelte-app",
   "version": "1.0.0",
   "scripts": {
-    "build": "../../../chat-app — копия/static/svelte/node_modules/.bin/rollup -c",
-    "dev": "../../../chat-app — копия/static/svelte/node_modules/.bin/rollup -c -w",
-    "start": "../../../chat-app — копия/static/svelte/node_modules/.bin/sirv public",
-    "validate": "../../../chat-app — копия/static/svelte/node_modules/.bin/svelte-check"
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "start": ".sirv public",
+    "validate": "svelte-check"
   },
   "dependencies": {
     "@rollup/plugin-commonjs": "^16.0.0",

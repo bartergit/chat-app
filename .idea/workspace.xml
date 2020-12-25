@@ -2,31 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1eb4499f-754d-4525-bf28-595e8cbcedd9" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/static/images/favicon.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/user-profile.png" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/styles/chat.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/styles/global.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/styles/message.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/svelte/package-lock.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/svelte/package.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/svelte/rollup.config.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/svelte/tsconfig.json" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/templates/register.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/application.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/create.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/models.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/demo-on-github.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/demo.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/images/rchat-playlist.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/404.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/field-macro.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/login.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/prelogin-layout.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wsgi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/wtform_fields.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/svelte/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/static/svelte/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/svelte/rollup.config.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/svelte/rollup.config.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -59,6 +37,7 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_MARK_IGNORED_FILES_AS_EXCLUDED" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
@@ -165,7 +144,7 @@
       <workItem from="1608902269300" duration="734000" />
       <workItem from="1608903127358" duration="2030000" />
       <workItem from="1608905334425" duration="51000" />
-      <workItem from="1608905388284" duration="725000" />
+      <workItem from="1608905388284" duration="1135000" />
     </task>
     <servers />
   </component>
