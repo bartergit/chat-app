@@ -1,0 +1,28 @@
+{
+  "name": "svelte-app",
+  "version": "1.0.0",
+  "scripts": {
+    "build": "../../../chat-app — копия/static/svelte/node_modules/.bin/rollup -c",
+    "dev": "../../../chat-app — копия/static/svelte/node_modules/.bin/rollup -c -w",
+    "start": "../../../chat-app — копия/static/svelte/node_modules/.bin/sirv public",
+    "validate": "../../../chat-app — копия/static/svelte/node_modules/.bin/svelte-check"
+  },
+  "dependencies": {
+    "@rollup/plugin-commonjs": "^16.0.0",
+    "@rollup/plugin-node-resolve": "^10.0.0",
+    "@rollup/plugin-typescript": "^6.0.0",
+    "@tsconfig/svelte": "^1.0.0",
+    "rollup": "^2.34.0",
+    "rollup-plugin-css-only": "^3.0.0",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-svelte": "^7.0.0",
+    "rollup-plugin-terser": "^7.0.0",
+    "sirv-cli": "^1.0.0",
+    "socket.io-client": "^3.0.4",
+    "svelte": "^3.0.0",
+    "svelte-check": "^1.0.0",
+    "svelte-preprocess": "^4.0.0",
+    "tslib": "^2.0.0",
+    "typescript": "^3.9.3"
+  }
+}
