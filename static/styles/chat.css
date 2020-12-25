@@ -64,6 +64,21 @@ div {
     width: 10%;
 }
 
+.withForm {
+    height: 50px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.withForm span{
+    overflow: hidden;
+    height: 14px;
+}
+
+.withForm form{
+    overflow: hidden;
+}
+
 .upperPanel {
     padding: 5px;
     width: 95%;
@@ -83,15 +98,6 @@ div {
 .upperPanel button {
     padding: 0 10px 0 10px;
     margin: 0;
-}
-
-.withForm {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.withForm span{
-    overflow: hidden;
 }
 
 .upperPanel input {

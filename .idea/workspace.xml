@@ -2,12 +2,33 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1eb4499f-754d-4525-bf28-595e8cbcedd9" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application.py" beforeDir="false" afterPath="$PROJECT_DIR$/application.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.py" beforeDir="false" afterPath="$PROJECT_DIR$/db.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/package.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/public/build/bundle.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/public/build/bundle.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/public/build/bundle.js.map" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/public/chat.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/public/favicon.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/public/global.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/public/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/public/message.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/public/user-profile.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/rollup.config.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/src/Chat.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/src/ChatCreation.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/src/Message.svelte" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/src/main.ts" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/templates/login.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/templates/register.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/client/tsconfig.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/scripts/chat_page.js" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/static/styles/chat.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/styles/chat.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/svelte/src/Chat.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/static/svelte/src/Chat.svelte" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/styles/chat_style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/styles/main_style.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/svelte/src/ChatCreation.svelte" beforeDir="false" afterPath="$PROJECT_DIR$/static/svelte/src/ChatCreation.svelte" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -181,7 +202,7 @@
       <workItem from="1608902269300" duration="734000" />
       <workItem from="1608903127358" duration="2030000" />
       <workItem from="1608905334425" duration="51000" />
-      <workItem from="1608905388284" duration="18733000" />
+      <workItem from="1608905388284" duration="21036000" />
     </task>
     <servers />
   </component>

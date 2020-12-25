@@ -38,30 +38,37 @@
         position: fixed;
         left: 50%;
         top: 30%;
+        width: 140px;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
     }
 
-    p {
-        margin: 0px;
-        padding: 0px;
+    form div{
+        width: auto;
     }
-
+    div {
+        margin: 0;
+        padding: 0;
+    }
     p input[type="checkbox"] {
         margin-right: 5px;
     }
 
-    input[type="text"] {
-        width: 120px;
+    #buttons-panel{
+        display: flex;
     }
 </style>
 
     <div class="window">
         <form on:submit|preventDefault={createChat}>
-            <p>
+            <div id="buttons-panel">
                 <input id="createChatButton" type="submit" value="Create chat"/>
                 <button
                         on:click={(e)=>{e.preventDefault(); changeVisibility()}}>X
                 </button>
-            </p>
+            </div>
             <input spellcheck="false" type="text" name="chat_name" placeholder="Chat name" required/>
             <p style="color:red">{message}</p>
             {#each users as user}
