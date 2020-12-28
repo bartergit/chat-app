@@ -17,18 +17,27 @@ else:
     )
 socketio = SocketIO(app, manage_session=False)
 
-#???
+
+def is_correct(string, space_usage=False):
+    return string is not None and False not in map(
+        lambda x: 'A' <= x <= 'z' or x == '_' or x.isdigit() or (space_usage and x == " "), string)
+
+
 @socketio.on('addChat')
 def addChat(data):
-    db.add_chat(data["chatName"], data["usersToAdd"])
-    socketio.emit("refresh chats")
-    return "ok", 200
+    if is_correct(data["chatName"]):
+        db.add_chat(data["chatName"], data["usersToAdd"])
+        socketio.emit("refresh chats")
+        return "ok"
+    else:
+        return "bad"
 
 
 @socketio.on('me')
 def me():
     join_room(request.sid)
     return session["current_user_id"]
+
 
 @app.route('/logout', methods=['GET'])
 def logout():
@@ -40,7 +49,7 @@ def logout():
 def login():
     login = request.args.get('login')
     password = request.args.get('password')
-    if login is not None and password is not None:
+    if is_correct(login) and is_correct(password):
         if not db.is_user_exist(login):
             return render_template("login.html", error="no user found")
         user = db.get_user_by_password(login, password)
@@ -50,7 +59,7 @@ def login():
         else:
             return render_template("login.html", error="password is wrong")
     else:
-        return render_template("login.html")
+        return render_template("login.html", error="use only letters, numbers and _" if login and password else "")
 
 
 @app.route("/register", methods=['GET'])
@@ -59,14 +68,17 @@ def register():
     name = request.args.get('name')
     password = request.args.get('password')
     user = User(login, name, password)
-    if db.is_user_exist(login):
+    if is_correct(login) and db.is_user_exist(login):
         return render_template("register.html", error="user with the same login already exists")
-    if name and password:
+    if is_correct(login) and is_correct(name, space_usage=True) and is_correct(password):
         user_id = db.insert_user(user)
         session["current_user_id"] = user_id
         socketio.emit("refresh users")
         return redirect("/")
-    return render_template("register.html")
+    if name is None and password is None:
+        return render_template("register.html")
+    else:
+        return render_template("register.html", error="use only letters, numbers and _")
 
 
 @app.route("/")

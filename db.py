@@ -40,6 +40,7 @@ class Chat:
         self.chat_name = chat_name
         self.id = id
 
+
 class DB_connection:
     SALT = os.environ.get("SALT").encode('utf-8')
     ITERATION_NUMBER = 100000
@@ -78,8 +79,9 @@ class DB_connection:
         return user_id
 
     def insert_message(self, content, from_user_id, chat_id):
-        self.execute_query(
-            f"insert into messages(content, from_user_id, time, chat_id) values ('{content}', {from_user_id}, {int(round(time.time() * 1000))}, {chat_id})")
+        self.cursor.execute(
+            f"insert into messages(content, from_user_id, time, chat_id) values (%s, %s, %s, %s)",
+            (content, from_user_id, int(round(time.time() * 1000)), chat_id))
 
     def get_user_by_password(self, login, password):
         users = self.get_data(
@@ -125,6 +127,4 @@ if __name__ == '__main__':
     db = DB_connection(
         "127.0.0.1", "postgres", "postgres", "admin", "5432"
     )
-    print(db.get_chats_by_user_id_as_dict(1))
-    for i in range(100):
-        print(db.get_messages_by_chat_id_as_dict(i))
+    print(db.is_user_exist("barter"))

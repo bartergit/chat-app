@@ -30,11 +30,11 @@
         setTimeout(() => scrollToBottom(true, false), 100);
     }
 
-    function scrollToBottom(dontCheckCondition = false,isSmooth = true) {
+    function scrollToBottom(dontCheckCondition = false, isSmooth = true) {
         if (ready) {
             let messageContent = document.getElementById("messages-content");
             if (dontCheckCondition || messageContent.scrollHeight - messageContent.scrollTop - messageContent.getBoundingClientRect().height < 500) {
-                messageContent.scrollTo({top: messageContent.scrollHeight, behavior: isSmooth ?'smooth' : 'auto'});
+                messageContent.scrollTo({top: messageContent.scrollHeight, behavior: isSmooth ? 'smooth' : 'auto'});
             }
         }
     }
@@ -76,11 +76,10 @@
     let sendMessage;
     const onSocketLoad = () => {
         socket = io();
-        console.log(socket);
-        console.log("hello");
         socket.emit("me", data => console.log(data));
-        function receiveMessages(){
-            socket.emit("receiveMessages", (res)=> {
+
+        function receiveMessages() {
+            socket.emit("receiveMessages", (res) => {
                 if (res == "bad") {
                     receiveMessages();
                 } else {
@@ -88,8 +87,9 @@
                 }
             });
         }
-        function receiveUsers(){
-            socket.emit("receiveUsers", (res)=> {
+
+        function receiveUsers() {
+            socket.emit("receiveUsers", (res) => {
                 if (res == "bad") {
                     receiveUsers();
                 } else {
@@ -97,8 +97,9 @@
                 }
             });
         }
-        function receiveChats(){
-            socket.emit("receiveChats", (res)=> {
+
+        function receiveChats() {
+            socket.emit("receiveChats", (res) => {
                 if (res == "bad") {
                     receiveChats();
                 } else {
@@ -106,6 +107,7 @@
                 }
             });
         }
+
         socket.on('connect', () => {
             console.log("connected");
             socket.emit("me", (data) => {
@@ -120,6 +122,10 @@
         });
         socket.on("get messages", (data) => {
             console.log("messages", data);
+            if (messages != undefined && Object.keys(data).length == 0) {
+                receiveMessages();
+                return;
+            }
             messages = data;
             setTimeout(scrollToBottom, 100);
         })
@@ -128,7 +134,6 @@
             console.log("chats", data);
             receiveMessages();
             if (currentChat === undefined) {
-                console.log("currentchat", currentChat);
                 currentChat = chats[0];
             }
         })
@@ -230,4 +235,6 @@
             </div>
         </div>
     </div>
+{:else}
+    <div style="display: flex; align-items: center; justify-content: center; height: 100%">Loading...</div>
 {/if}
